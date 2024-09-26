@@ -16,7 +16,7 @@ public class Strings {
 		//substring() menthod- to get a part of the String
 		
 		String sub = s.substring(0, 8);
-		System.out.println("Substring with start index 0 and end undex 8: "+ sub);
+		System.out.println("Substring with start index 0 and end index 8: "+ sub);
 		
 		String sub1 = s.substring(3);
 		System.out.println("Substring with start index 3: "+ sub1);
