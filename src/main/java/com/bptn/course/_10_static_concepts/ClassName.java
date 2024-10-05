@@ -35,7 +35,7 @@ public class ClassName {
 		
 		//access the static variable
 		System.out.println("Static variable: "+ staticVariable);
-		staticMethod();
+		staticMethod();	
 
 	}
 
