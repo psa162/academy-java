@@ -1,0 +1,183 @@
+--------create data base---------------
+
+-- CREATE TABLE "courses"(
+--    "courseId" INT GENERATED ALWAYS AS IDENTITY,
+--    "courseName" VARCHAR(120) NOT NULL,
+--     CONSTRAINT "courses_pk" PRIMARY KEY ("courseId")
+-- );
+
+-- CREATE TABLE "students" (
+--   "studentId" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+--   "courseId" INT NOT NULL,
+--   "studentName" VARCHAR(120) NOT NULL,
+--   "studentEmail" VARCHAR(120) UNIQUE NOT NULL,
+--   "studentPhone" VARCHAR(20),
+--   FOREIGN KEY ("courseId") 
+--     REFERENCES courses("courseId")
+--     ON UPDATE NO ACTION
+--     ON DELETE NO ACTION
+--     NOT VALID
+-- );
+
+
+-- "courses"
+-- INSERT INTO "courses" ("courseName") VALUES
+-- ('Introduction to Computer Science'),
+-- ('Data Structures and Algorithms'),
+-- ('Database Management Systems'),
+-- ('Web Development Fundamentals'),
+-- ('Artificial Intelligence Basics'),
+-- ('Machine Learning Fundamentals'),
+-- ('Software Engineering Principles'),
+-- ('Computer Networks and Security'),
+-- ('Operating Systems Concepts'),
+-- ('Object-Oriented Programming'),
+-- ('Introduction to Python Programming'),
+-- ('Java Programming Essentials'),
+-- ('C++ Programming Fundamentals'),
+-- ('Data Analytics Techniques'),
+-- ('Information Retrieval Methods'),
+-- ('Mobile App Development'),
+-- ('Human-Computer Interaction'),
+-- ('Computer Graphics and Visualization'),
+-- ('Cloud Computing Technologies'),
+-- ('Big Data Analytics');
+
+-- "students"
+-- INSERT INTO "students" ("courseId", "studentName", "studentEmail", "studentPhone") VALUES
+-- (1, 'John Smith', 'john.smith@gmail.com', '4165551234'),
+-- (1, 'Emily Johnson', 'emily.johnson@yahoo.com', '6475552345'),
+-- (2, 'Michael Davis', 'michael.davis@hotmail.com', '9055553456'),
+-- (2, 'Sophia Brown', 'sophia.brown@gmail.com', '+14165554567'),
+-- (3, 'William Wilson', 'william.wilson@yahoo.com', '647-555-5678'),
+-- (3, 'Olivia Taylor', 'olivia.taylor@hotmail.com', '9055556789'),
+-- (4, 'James Anderson', 'james.anderson@gmail.com', '416-555-7890'),
+-- (4, 'Ava Thomas', 'ava.thomas@yahoo.com', '6475558901'),
+-- (5, 'Benjamin Martinez', 'benjamin.martinez@hotmail.com', '9055559012'),
+-- (5, 'Mia Hernandez', 'mia.hernandez@gmail.com', '4165550123'),
+-- (6, 'Daniel Lopez', 'daniel.lopez@yahoo.com', '6475551234'),
+-- (6, 'Charlotte Clark', 'charlotte.clark@hotmail.com', '9055552345'),
+-- (7, 'Joseph Lewis', 'joseph.lewis@gmail.com', '4165553456'),
+-- (7, 'Amelia Lee', 'amelia.lee@yahoo.com', '6475554567'),
+-- (8, 'David Walker', 'david.walker@hotmail.com', '9055555678'),
+-- (8, 'Sofia Hall', 'sofia.hall@gmail.com', '4165556789'),
+-- (9, 'Andrew Young', 'andrew.young@yahoo.com', '6475557890'),
+-- (9, 'Harper Hernandez', 'harper.hernandez@hotmail.com', '9055558901'),
+-- (10, 'Alexander King', 'alexander.king@gmail.com', '416-555-9012'),
+-- (10, 'Abigail White', 'abigail.white@yahoo.com', '6475550123'),
+-- (11, 'Ethan Hill', 'ethan.hill@hotmail.com', '9055551234'),
+-- (11, 'Emily Adams', 'emily.adams@gmail.com', '4165552345'),
+-- (12, 'James Wright', 'james.wright@yahoo.com', '6475553456'),
+-- (13, 'Avery Scott', 'avery.scott@hotmail.com', '9055554567'),
+-- (14, 'Logan Green', 'logan.green@gmail.com', '4165555678'),
+-- (15, 'Ella Martinez', 'ella.martinez@yahoo.com', '6475556789'),
+-- (16, 'Lucas Rodriguez', 'lucas.rodriguez@hotmail.com', '9055557890'),
+-- (17, 'Scarlett Perez', 'scarlett.perez@gmail.com', '4165558901'),
+-- (18, 'Henry Cooper', 'henry.cooper@yahoo.com', '6475559012'),
+-- (19,  'Jane Smith',   'jane@gmail.com', NULL),
+-- (5,   'Bob Wilson',  'bob@hotmail.com', NULL);
+
+--READ
+--SELECT (specify what you want) FROM (name of tabel) WHERE (condition)
+
+-- SELECT * FROM courses;
+
+-- SELECT * FROM students;
+
+-- SELECT "studentName", "studentEmail" FROM students;
+
+-- Get all the students who have a courseId = 1
+-- SELECT * FROM "students" WHERE "courseId" = 1;
+
+-- Get all the students whose studentId is greater than 4 but less than 20
+-- SELECT * FROM "students" WHERE "studentId" > 4 AND "studentId" < 10;
+
+-- Get all the students who do not have data stored for studentPhone
+-- SELECT * FROM "students" WHERE "studentPhone" IS NULL;
+
+-- Get all the students whose studentName starts with Jo no matter what other letters might follow the Jo
+-- SELECT * FROM "students" WHERE "studentName" LIKE 'Jo%';
+
+-- Get all the students whose courseId is present in the list (1, 5)
+-- SELECT * FROM "students" WHERE "courseId" IN ( 1, 5 );
+
+-- Get all the students whose courseIds are between 1 AND 5 inclusive
+-- SELECT * FROM "students" WHERE "courseId" BETWEEN 1 AND 5;
+
+-- SELECT * FROM "students" WHERE "studentName" LIKE '%a%';
+
+
+
+-----------UPdate
+
+-- UPDATE (what you want to update ) SET (new value);
+
+-- UPDATE students
+-- SET "studentName" = 'John' 
+-- WHERE "studentId" =1;
+
+-- select * from "students" where "studentId"=1;
+
+-- UPDATE students
+-- SET "studentName" = 'John Smith' 
+-- WHERE "studentId" =1;
+
+-- SELECT c."courseName", COUNT(s."studentId") AS "totalStudents"
+-- FROM "courses" c
+-- JOIN "students" s ON c."courseId" = s."courseId"
+-- GROUP BY c."courseName"
+-- HAVING COUNT(s."studentId") > 1;
+
+-- SELECT * from courses 
+-- full outer join students on courses."courseId" = students."courseId";
+
+-- Get a list of all the courseIds for every course that students are taking:
+-- SELECT DISTINCT "courseId" 
+-- FROM "students" 
+-- ORDER BY "courseId";
+
+-- -- Get a list of all the names of courses
+-- SELECT DISTINCT st."courseId", co."courseName" 
+-- FROM "students" AS st 
+-- INNER JOIN "courses" AS co 
+-- ON st."courseId" = co."courseId" ORDER BY st."courseId";
+
+-- SELECT DISTINCT COUNT("studentName") FROM students;
+
+-- SELECT st."studentName", co."courseName" 
+-- FROM "students" AS st
+-- INNER JOIN "courses" AS co
+-- ON st."courseId" = co."courseId";
+
+-- SELECT "students"."studentName", "courses"."courseName"
+-- FROM "students"
+-- INNER JOIN "courses"
+-- ON "students"."courseId" = "courses"."courseId";
+
+
+
+
+-- SELECT COUNT(DISTINCT "studentName")
+-- FROM students;
+
+-- SELECT "studentPhone", "studentId"
+-- FROM students
+
+-- UNION
+
+-- SELECT "courseId", "courseName"
+-- FROM courses;
+
+-- SELECT "studentId" AS "Student ID", 
+-- "studentPhone" AS "Phone"
+-- "studentName" AS "Name"
+-- FROM "students";
+
+
+
+
+
+
+
+
+
